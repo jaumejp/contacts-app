@@ -5,6 +5,7 @@
     $id = $_GET["id"];
 
     // Si posem linit 1, en comptes de donar un array de contactes [["name" -> "Jaume]]
+    // Ens estalviem de accedir per index
     // Ja ens donara el contacte ["name" -> "Jaume"]
     $statement = $conn->prepare("SELECT * FROM contacts WHERE id = :id LIMIT 1");
     $statement->execute([":id" => $id]);
@@ -43,13 +44,8 @@
       }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<?php require "partials/header.php" ?>
+    
     <style>
         .danger {
             color: red;
@@ -76,7 +72,8 @@
     </form>
 
     <button><a href="./index.php">Contacts List</a></button>
-
+    
+    <?php require "partials/footer.php" ?>
 
 </body>
 </html>
