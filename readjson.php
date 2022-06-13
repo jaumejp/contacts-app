@@ -41,8 +41,8 @@
     $statement->execute();
 
     // Posar els valors del JSON a la BBDD:
+    $statement = $conn->prepare("INSERT INTO intolerances (intolerance_name) VALUES (:valor);");
     foreach($intolerances as $intolerance) {
-        $statement = $conn->prepare("INSERT INTO intolerances (intolerance_name) VALUES (:valor);");
         $statement->bindParam(":valor", $intolerance["name"]);
         $statement->execute();      
     }
